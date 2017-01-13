@@ -7,7 +7,7 @@
     .controller('TransactionsCtrl', TransactionsCtrl)
   ;
 
-  function TransactionsCtrl(API, $location, $q, $timeout) {
+  function TransactionsCtrl(API, $location, $q, $timeout, $mdSidenav) {
     var vm = this;
 
     vm.transactions = [];
@@ -78,6 +78,9 @@
           return 0;
         });
       }, 2000);
+    };
+    vm.toggleLeft = function () {
+      $mdSidenav("left").toggle();
     };
 
     vm.getTransactions();
