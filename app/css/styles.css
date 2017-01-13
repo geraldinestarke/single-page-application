@@ -1,0 +1,22 @@
+.md-no-margin {
+  margin: 0px!important;
+}
+.no-margin-top {
+  margin-top: 0px!important;
+}
+.no-margin-top-left {
+  margin-left: 0px!important;
+  margin-top: 0px!important;
+}
+.md-no-padding {
+  padding: 0px!important;
+}
+.md-cell {
+  height: 42px;
+}
+.color {
+  background-color: grey;
+}
+.white {
+  color: white;
+}

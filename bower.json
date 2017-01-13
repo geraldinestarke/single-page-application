@@ -1,6 +1,5 @@
 {
-  "name": "FashionExchange Web App",
-  "description": "FashionExchange and OrderWriter frontend",
+  "name": "Single Page Application",
   "main": "index.js",
   "authors": [
     "Geraldine Starke <geraldine@starke.fr"
@@ -9,8 +8,6 @@
     "globals"
   ],
   "license": "ISC",
-  "homepage": "http://www.nyon.nl/",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",

@@ -1,32 +1,32 @@
 doctype html
-div(class='md-content', id='transactions')
+div(class='md-content', id='transactions', layout='row')
   //- side bar
-  md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="$mdMedia('gt-md')", md-whiteframe="4")
+  md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="$mdMedia('gt-md')", md-whiteframe="4", class='color')
 
     md-toolbar(class='md-hue-1')
       h1(class='md-toolbar-tools') FINPAL
-    md-content(layout-padding, layout-align='center center', class='md-primary')
-      p Overview
-      p Transactions (3)
+    div(layout-padding, layout-align='center center')
+      p(class='white') Overview
+      p(class='white') Transactions (3)
       md-divider
-      p Transfers (2)
-      p Invoices (1)
+      p(class='white') Transfers (2)
+      p(class='white') Invoices (1)
       md-divider
-      p Manage cards
-      p Manage accounts
+      p(class='white') Manage cards
+      p(class='white') Manage accounts
       md-divider
-      p Team
-      p Integrations
-      p Settings
+      p(class='white') Team
+      p(class='white') Integrations
+      p(class='white') Settings
 
       md-button(class='md-raised') Upgrage Account
 
   //- transactions table
-  md-card
+  md-card(class='no-margin-top')
     //- default toolbar
-    md-toolbar(class='md-table-toolbar md-default md-accent')
+    md-toolbar(class='md-table-toolbar md-accent')
       div(class='md-toolbar-tools')
-    //- masterdata records list
+    //- transactions list
     md-card-content
       div
         //- list
@@ -43,8 +43,17 @@ div(class='md-content', id='transactions')
             //- rows
             tbody(md-body)
               tr(md-select='item', md-select-id='id', ng-repeat='item in vm.transactions')
-                td(md-cell, class='text-center') {{item.created_at}}
+                td(md-cell, class='text-center') {{item.created_at | date : dd-MM-yyyy}}
                 td(md-cell, class='text-center') {{item.counterparty_name}}
                 td(md-cell, class='text-center') {{item.operation_type}}
                 td(md-cell, class='text-center') {{item.amount | currency: item.currency+' '}}
                 td(md-cell, class='text-center') {{item.attachements[0].url}}
+
+  //- show results
+  md-card(flex, class='no-margin-top-left')
+    //- default toolbar
+    md-toolbar(class='md-table-toolbar')
+      div(class='md-toolbar-tools')
+    //- results
+    md-card-content(flex, layout='column', layout-align='center center')
+      div(layout-align='center center') Click on one or several transactions to see details
