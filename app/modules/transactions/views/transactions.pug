@@ -7,7 +7,7 @@ div(class='md-content', id='transactions', layout='row')
       h1(class='md-toolbar-tools') FINPAL
     div(layout-padding, layout-align='center center')
       p(class='white') Overview
-      p(class='white') Transactions (3)
+      p(class='white') Transactions ({{vm.transactions.length}})
       md-divider
       p(class='white') Transfers (2)
       p(class='white') Invoices (1)
@@ -22,7 +22,7 @@ div(class='md-content', id='transactions', layout='row')
       md-button(class='md-raised') Upgrage Account
 
   //- transactions table
-  md-card(class='no-margin-top')
+  md-card(class='no-margin-top', flex='70')
     //- default toolbar
     md-toolbar(class='md-table-toolbar md-accent')
       div(class='md-toolbar-tools')
@@ -39,21 +39,41 @@ div(class='md-content', id='transactions', layout='row')
                 th(md-column, class='text-center') Counterpary Name
                 th(md-column, class='text-center') Payment type
                 th(md-column, class='text-center') Amount
-                th(md-column, class='text-center') Attachement
+                th(md-column, style='padding-left:20px')
+                  md-icon attach_file
             //- rows
             tbody(md-body)
               tr(md-select='item', md-select-id='id', ng-repeat='item in vm.transactions')
                 td(md-cell, class='text-center') {{item.created_at | date : dd-MM-yyyy}}
                 td(md-cell, class='text-center') {{item.counterparty_name}}
                 td(md-cell, class='text-center') {{item.operation_type}}
-                td(md-cell, class='text-center') {{item.amount | currency: item.currency+' '}}
-                td(md-cell, class='text-center') {{item.attachements[0].url}}
+                td(md-cell, class='text-center') {{item.amount | currency: ' '+item.currency+' '}}
+                td(md-cell, layout='row', layout-align='start center')
+                  md-button(class='md-icon-button', href='{{item.attachements[0].url}}' )
+                    md-icon attach_file
+        //- pagination
+        md-table-pagination(md-limit='vm.query.limit', md-limit-options='[10]', md-page='vm.query.page', md-total='{{vm.query.totalcount}}', md-on-paginate='vm.onPaginate', md-page-select)
 
   //- show results
-  md-card(flex, class='no-margin-top-left')
+  md-card(flex='30', class='no-margin-top-left')
     //- default toolbar
     md-toolbar(class='md-table-toolbar')
       div(class='md-toolbar-tools')
     //- results
     md-card-content(flex, layout='column', layout-align='center center')
-      div(layout-align='center center') Click on one or several transactions to see details
+      div(layout-align='center center', ng-if='vm.selected.length === 0') Click on one or several transactions to see details
+      div(ng-if='vm.selected.length === 1', layout='column')
+        div <strong>id</strong>: {{vm.selected[0].id}}
+        div <strong>created_at</strong>: {{vm.selected[0].created_at}}
+        div <strong>counterparty_name</strong>: {{vm.selected[0].counterparty_name}}
+        div <strong>debit</strong>: {{vm.selected[0].debit}}
+        div <strong>credit</strong>: {{vm.selected[0].credit}}
+        div <strong>amount</strong>: {{vm.selected[0].amount | currency: ' '+vm.selected[0].currency+' '}}
+        div <strong>operation_type</strong>: {{vm.selected[0].operation_type}}
+        div <strong>attachements</strong>:
+        ul
+          li(ng-repeat='attachement in vm.selected[0].attachements')
+            a(href='{{attachement.url}}') {{attachement.url}}
+      div(ng-if='vm.selected.length > 1', layout='column')
+        div Selected transactions #:
+        div(ng-repeat='item in vm.selected') {{item.id}}
