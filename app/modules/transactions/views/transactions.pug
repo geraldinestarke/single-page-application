@@ -1,5 +1,5 @@
 doctype html
-div(class='md-content', id='transactions', layout='row')
+div(class='md-content', id='transactions', layout='row', layout-fill)
   //- side bar
   md-sidenav(class="md-sidenav-left", md-component-id="left", md-is-locked-open="$mdMedia('gt-md')", md-whiteframe="4", class='color')
 
@@ -18,8 +18,8 @@ div(class='md-content', id='transactions', layout='row')
       p(class='white') Team
       p(class='white') Integrations
       p(class='white') Settings
-
-      md-button(class='md-raised') Upgrage Account
+      div(layout='row', layout-align='center center')
+        md-button(class='md-raised') Upgrage Account
 
   //- transactions table
   md-card(class='no-margin-top', flex='70')
