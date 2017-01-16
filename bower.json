@@ -1,0 +1,39 @@
+{
+  "name": "Single Page Application",
+  "main": "index.js",
+  "authors": [
+    "Geraldine Starke <geraldine@starke.fr"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-route": "1.5.8",
+    "angular-aria": "1.5.8",
+    "angular-messages": "1.5.8",
+    "angular-cookies": "1.5.8",
+    "angular-material": "1.1.1",
+    "material-design-icons": "^2.2.3",
+    "roboto-fontface": "^0.5.0",
+    "angular-nvd3": "~1.0.8",
+    "angular-material-data-table": "~0.10.9",
+    "visionmedia-debug": "2.3.3"
+  },
+  "overrides": {
+    "material-design-icons": {
+      "main": [
+        "iconfont/material-icons.css"
+      ]
+    }
+  }
+}

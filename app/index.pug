@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(content='initial-scale=1', name='viewport')
+    title Single App
+    //- link(rel='icon', href='/favicon.ico')
+    //- bower:css
+    //- endbower
+    //- inject:css
+    //- endinject
+  body(layout='column', layout-fill, ng-app='SinglePageApp', ng-controller='MainCtrl as m', ng-cloak)
+    //- loading indicator
+    div(layout='row', layout-align='center center', class='loading', id='loading', loading, ng-show='m.isLoading()')
+      div(layout='row', layout-align='center center', class='child')
+        md-progress-circular(md-mode='indeterminate')
+    header
+    main(flex)
+      //- content
+      md-content(id='content', class='md-content', layout-fill, layout='column')
+        //- page content
+        div(ng-view, flex)
+    //- bower:js
+    //- endbower
+    //- inject:js
+    //- endinject
